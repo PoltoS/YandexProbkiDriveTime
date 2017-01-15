@@ -1,0 +1,10 @@
+{
+	"m_title": "Yandex Probki Drive Time",
+	"m_descr": "This App allows you calculate the time to drive based on Yandex Maps service.",
+	"lat1": "Latitude of departure point",
+	"long1": "Longitude of departure point",
+	"lat2": "Latitude of destination point",
+	"long2": "Longitude of destination point",
+	"greenMax": "Maximum travel time in minutes assumed as jams free",
+	"yellowMax": "Maximum travel time in minutes assumed as with moderate jams"
+}

@@ -1,0 +1,71 @@
+{
+    "singleton": false,
+    "category": "support_external_dev",
+    "author": "Poltorak Serguei, Z-Wave.Me",
+    "homepage": "https://github.com/PoltoS/YandexProbkiDriveTime",
+    "icon": "icon.png",
+    "moduleName":"YandexProbkiDriveTime",
+    "version":"1.0.0",
+    "maturity": "stable",
+    "repository": {
+            "type": "git",
+            "source": "https://github.com/PoltoS/YandexProbkiDriveTime"
+    },
+    "defaults": {
+        "title": "__m_title__",
+        "description": "__m_descr__",
+	    "city": ""
+    },
+    "schema": {
+        "type": "object",
+        "properties": {
+            "lat1": {
+                "type": "number",
+                "required": true
+            },
+            "long1": {
+                "type": "number",
+                "required": true
+            },
+            "lat2": {
+                "type": "number",
+                "required": true
+            },
+            "long2": {
+                "type": "number",
+                "required": true
+            },
+            "greenMaxTime": {
+                "type": "number",
+                "required": true
+            },
+            "yellowMaxTime": {
+                "type": "number",
+                "required": true
+            }
+        },
+        "required": true
+    },
+    "options": {
+        "fields": {
+            "lat1": {
+                "label": "__l_lat1"
+            },
+            "long1": {
+                "label": "__l_long1"
+            },
+            "lat2": {
+                "label": "__l_lat2"
+            },
+            "long2": {
+                "label": "__l_long2"
+            },
+            "greenMaxTime": {
+                "label": "__l_greenMaxTime"
+            },
+            "yellowMaxTime": {
+                "label": "__l_yellowMaxTime"
+            }
+        }
+    }
+}
