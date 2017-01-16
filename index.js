@@ -38,12 +38,13 @@ YandexProbkiDriveTime.prototype.init = function (config) {
     this.redColor = { red: 0xe8, green: 0x52, blue: 0x53 };
 
     this.vDev = this.controller.devices.create({
-        deviceId: "YandexProbkiDriveTime_" + this.id,
+        deviceId: this.constructor.name + "_" + this.id,
         defaults: {
             deviceType: "sensorMultilevel",
             metrics: {
+                title: this.getInstanceTitle(this.id),
                 probeTitle: "minutes",
-                scaleTitle: "мин",
+                scaleTitle: "min",
                 icon: this.iconPrefix + "Unknown" + this.iconSuffix
             }
         },
@@ -178,4 +179,13 @@ YandexProbkiDriveTime.prototype.updateVDev = function(timeMinutes) {
             this.setRGB(this.redColor);
             break;
     }
+};
+
+YandexProbkiDriveTime.prototype.getInstanceTitle = function () {
+    var self = this,
+        instanceTitle = this.controller.instances.filter(function (instance){
+            return instance.id === self.id;
+        });
+    
+    return (instanceTitle[0] && instanceTitle[0].title) ? instanceTitle[0].title : ("Yandex Probki " + this.id);
 };

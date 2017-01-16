@@ -7,8 +7,9 @@
 	"l_long2": "Longitude of destination point",
 	"l_greenMaxTime": "Maximum travel time in minutes assumed as jams free",
 	"l_yellowMaxTime": "Maximum travel time in minutes assumed as with moderate jams",
-	"l_greenScene": "Scene to execute on EVERY update of the value if result is Green Ligt",
-	"l_yellowScene": "Scene to execute on EVERY update of the value if result is Green Ligt",
-	"l_redScene": "Scene to execute on EVERY update of the value if result is Green Ligt",
-	"l_rgbDevice": "RGB device to use to show taffic jams level using green/yellow/red colors"
+	"l_greenScene": "Scene to execute on EVERY update of the value if result is Green Light",
+	"l_yellowScene": "Scene to execute on EVERY update of the value if result is Yellow Light",
+	"l_redScene": "Scene to execute on EVERY update of the value if result is Red Light",
+	"l_rgbDevice": "RGB device to use to show taffic jams level using green/yellow/red colors",
+	"minutes": "min"
 }
