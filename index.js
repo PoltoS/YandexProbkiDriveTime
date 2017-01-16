@@ -1,7 +1,7 @@
 /*** YandexProbkiDriveTime Z-Way HA module *******************************************
 
-Version: 1.0.0
-(c) Z-Wave.Me, 2016
+Version: 1.0.1
+(c) Z-Wave.Me, 2017
 -----------------------------------------------------------------------------
 Author: Poltorak Serguei <ps@z-wave.me>
 Description: Drive time with jams according to Yandex.Probki
