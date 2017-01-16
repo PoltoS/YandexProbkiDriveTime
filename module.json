@@ -73,25 +73,32 @@
     "options": {
         "fields": {
             "lat1": {
-                "label": "__l_lat1__"
+                "label": "__l_lat1__",
+                "placeholder": "__p_lat1__"
             },
             "long1": {
-                "label": "__l_long1__"
+                "label": "__l_long1__",
+                "placeholder": "__p_long1__"
             },
             "lat2": {
-                "label": "__l_lat2__"
+                "label": "__l_lat2__",
+                "placeholder": "__p_lat2__"
             },
             "long2": {
-                "label": "__l_long2__"
+                "label": "__l_long2__",
+                "placeholder": "__p_long2__"
             },
             "greenMaxTime": {
-                "label": "__l_greenMaxTime__"
+                "label": "__l_greenMaxTime__",
+                "helper": "__h_greenMaxTime__"
             },
             "yellowMaxTime": {
-                "label": "__l_yellowMaxTime__"
+                "label": "__l_yellowMaxTime__",
+                "helper": "__h_yellowMaxTime__"
             },
             "greenScene": {
                 "label": "__l_greenScene__",
+                "helper": "__h_greenScene__",
                 "type": "select",
                 "datasource": "namespaces",
                 "field": "optionLabels",
@@ -99,6 +106,7 @@
             },
             "yellowScene": {
                 "label": "__l_yellowScene__",
+                "helper": "__h_yellowScene__",
                 "type": "select",
                 "datasource": "namespaces",
                 "field": "optionLabels",
@@ -106,6 +114,7 @@
             },
             "redScene": {
                 "label": "__l_redScene__",
+                "helper": "__h_redScene__",
                 "type": "select",
                 "datasource": "namespaces",
                 "field": "optionLabels",
