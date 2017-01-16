@@ -4,7 +4,7 @@ Version: 1.0.0
 (c) Z-Wave.Me, 2016
 -----------------------------------------------------------------------------
 Author: Poltorak Serguei <ps@z-wave.me>
-Description: Traffic Jam info from point to point from Yandex
+Description: Drive time with jams according to Yandex.Probki
 
 ******************************************************************************/
 
@@ -30,10 +30,14 @@ YandexProbkiDriveTime.prototype.init = function (config) {
 
     var self = this;
     
-    this.iconPrefix = "/ZAutomation/api/v1/load/modulemedia/" + this.constructor.name + "/";
+    this.iconPrefix = "/ZAutomation/api/v1/load/modulemedia/" + this.constructor.name + "/light";
     this.iconSuffix = ".png";
+    
+    this.greenColor = { red: 0x20, green: 0xbd, blue: 0x24 };
+    this.yellowColor = { red: 0xfb, green: 0xc2, blue: 0x2e };
+    this.redColor = { red: 0xe8, green: 0x52, blue: 0x53 };
 
-    this.vDev = self.controller.devices.create({
+    this.vDev = this.controller.devices.create({
         deviceId: "YandexProbkiDriveTime_" + this.id,
         defaults: {
             deviceType: "sensorMultilevel",
@@ -43,13 +47,19 @@ YandexProbkiDriveTime.prototype.init = function (config) {
                 icon: this.iconPrefix + "Unknown" + this.iconSuffix
             }
         },
+        overlay: {},
+        handler: function (command) {
+            if (command === "update") {
+                self.fetchToken();
+            }
+        },
         moduleId: this.id
     });
 
     this.timer = setInterval(function() {
-        self.fetchToken(self);
+        self.fetchToken();
     }, 10*60*1000);
-    self.fetchToken(self);
+    this.fetchToken();
 };
 
 YandexProbkiDriveTime.prototype.stop = function () {
@@ -86,14 +96,18 @@ YandexProbkiDriveTime.prototype.fetchToken = function() {
             }
         
             self.fetchDriveTime(m[1]);
-    }});
+        },
+        error: function() {
+            self.updateVDev(null);
+        }
+    });
 };
 
-YandexProbkiDriveTime.prototype.fetchToken = function(token) {
+YandexProbkiDriveTime.prototype.fetchDriveTime = function(token) {
     var self = this;
     
     http.request({
-        url: "https://api-maps.yandex.ru/services/route/2.0/?lang=ru_RU&token=" + token + "&rll=" + this.config.lat1 + "%2C" + this.config.long1 + "~" + this.config.lat1 + "%2C" + this.config.long2,
+        url: "https://api-maps.yandex.ru/services/route/2.0/?lang=ru_RU&token=" + token + "&rll=" + this.config.lat1 + "%2C" + this.config.long1 + "~" + this.config.lat2 + "%2C" + this.config.long2,
         async: true,
         success: function(response) {
             if (typeof response.data !== "object") {
@@ -111,22 +125,57 @@ YandexProbkiDriveTime.prototype.fetchToken = function(token) {
             } catch (e) {
                 self.updateVDev(null);
             }
+        },
+        error: function() {
+            self.updateVDev(null);
         }
     });
 };
 
-YandexProbkiDriveTime.prototype.updateVDev(timeMinutes) {
+
+YandexProbkiDriveTime.prototype.setScene = function(scene) {
+    var vDev = this.controller.devices.get(scene);
+    if (vDev) {
+        vDev.performCommand("on");
+    }
+};
+
+YandexProbkiDriveTime.prototype.setRGB = function(color) {
+    var vDev = this.controller.devices.get(this.config.rgbDevice);
+    if (vDev) {
+        vDev.performCommand("exact", color);
+    }
+};
+
+YandexProbkiDriveTime.prototype.updateVDev = function(timeMinutes) {
+    var icon;
+    
     if (timeMinutes === null) {
         // unknown value or fetch error
         icon = "Unknown";
-    } else if (timeMinutes < this.config.greenMaxMinutes) {
+    } else if (timeMinutes < this.config.greenMaxTime) {
         icon = "Green";
-    } else if (timeMinutes < this.config.yellowMaxMinutes) {
+    } else if (timeMinutes < this.config.yellowMaxTime) {
         icon = "Yellow";
     } else {
         icon = "Red";
     }
 
-    self.vDev.set("metrics:level", timeMinutes);
-    self.vDev.set("metrics:icon", this.iconPrefix + icon + this.iconSuffix);
+    this.vDev.set("metrics:level", timeMinutes);
+    this.vDev.set("metrics:icon", this.iconPrefix + icon + this.iconSuffix);
+    
+    switch(icon) {
+        case "Green":
+            this.setScene(this.config.greenScene);
+            this.setRGB(this.greenColor);
+            break;
+        case "Yellow":
+            this.setScene(this.config.yellowScene);
+            this.setRGB(this.yellowColor);
+            break;
+        case "Red":
+            this.setScene(this.config.redScene);
+            this.setRGB(this.redColor);
+            break;
+    }
 };

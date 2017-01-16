@@ -1,10 +1,14 @@
 {
 	"m_title": "Yandex Probki Drive Time",
 	"m_descr": "This App allows you calculate the time to drive based on Yandex Maps service.",
-	"lat1": "Latitude of departure point",
-	"long1": "Longitude of departure point",
-	"lat2": "Latitude of destination point",
-	"long2": "Longitude of destination point",
-	"greenMax": "Maximum travel time in minutes assumed as jams free",
-	"yellowMax": "Maximum travel time in minutes assumed as with moderate jams"
+	"l_lat1": "Latitude of departure point",
+	"l_long1": "Longitude of departure point",
+	"l_lat2": "Latitude of destination point",
+	"l_long2": "Longitude of destination point",
+	"l_greenMaxTime": "Maximum travel time in minutes assumed as jams free",
+	"l_yellowMaxTime": "Maximum travel time in minutes assumed as with moderate jams",
+	"l_greenScene": "Scene to execute on EVERY update of the value if result is Green Ligt",
+	"l_yellowScene": "Scene to execute on EVERY update of the value if result is Green Ligt",
+	"l_redScene": "Scene to execute on EVERY update of the value if result is Green Ligt",
+	"l_rgbDevice": "RGB device to use to show taffic jams level using green/yellow/red colors"
 }

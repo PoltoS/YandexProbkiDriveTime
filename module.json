@@ -42,6 +42,30 @@
             "yellowMaxTime": {
                 "type": "number",
                 "required": true
+            },
+            "greenScene": {
+                "field": "enum",
+                "datasource": "namespaces",
+                "enum": "namespaces:devices_toggleButton:deviceId",
+                "required": false
+            },
+            "yellowScene": {
+                "field": "enum",
+                "datasource": "namespaces",
+                "enum": "namespaces:devices_toggleButton:deviceId",
+                "required": false
+            },
+            "redScene": {
+                "field": "enum",
+                "datasource": "namespaces",
+                "enum": "namespaces:devices_toggleButton:deviceId",
+                "required": false
+            },
+            "rgbDevice": {
+                "field": "enum",
+                "datasource": "namespaces",
+                "enum": "namespaces:devices_switchRGBW:deviceId",
+                "required": false
             }
         },
         "required": true
@@ -49,22 +73,50 @@
     "options": {
         "fields": {
             "lat1": {
-                "label": "__l_lat1"
+                "label": "__l_lat1__"
             },
             "long1": {
-                "label": "__l_long1"
+                "label": "__l_long1__"
             },
             "lat2": {
-                "label": "__l_lat2"
+                "label": "__l_lat2__"
             },
             "long2": {
-                "label": "__l_long2"
+                "label": "__l_long2__"
             },
             "greenMaxTime": {
-                "label": "__l_greenMaxTime"
+                "label": "__l_greenMaxTime__"
             },
             "yellowMaxTime": {
-                "label": "__l_yellowMaxTime"
+                "label": "__l_yellowMaxTime__"
+            },
+            "greenScene": {
+                "label": "__l_greenScene__",
+                "type": "select",
+                "datasource": "namespaces",
+                "field": "optionLabels",
+                "optionLabels": "namespaces:devices_toggleButton:deviceName"
+            },
+            "yellowScene": {
+                "label": "__l_yellowScene__",
+                "type": "select",
+                "datasource": "namespaces",
+                "field": "optionLabels",
+                "optionLabels": "namespaces:devices_toggleButton:deviceName"
+            },
+            "redScene": {
+                "label": "__l_redScene__",
+                "type": "select",
+                "datasource": "namespaces",
+                "field": "optionLabels",
+                "optionLabels": "namespaces:devices_toggleButton:deviceName"
+            },
+            "rgbDevice": {
+                "label": "__l_rgbDevice__",
+                "type": "select",
+                "datasource": "namespaces",
+                "field": "optionLabels",
+                "optionLabels": "namespaces:devices_switchRGBW:deviceName"
             }
         }
     }
