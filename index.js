@@ -1,6 +1,6 @@
 /*** YandexProbkiDriveTime Z-Way HA module *******************************************
 
-Version: 1.0.1
+Version: 1.0.2
 (c) Z-Wave.Me, 2017
 -----------------------------------------------------------------------------
 Author: Poltorak Serguei <ps@z-wave.me>
