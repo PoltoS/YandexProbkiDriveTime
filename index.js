@@ -108,7 +108,7 @@ YandexProbkiDriveTime.prototype.fetchDriveTime = function(token) {
     var self = this;
     
     http.request({
-        url: "https://api-maps.yandex.ru/services/route/2.0/?lang=ru_RU&token=" + token + "&rll=" + this.config.lat1 + "%2C" + this.config.long1 + "~" + this.config.lat2 + "%2C" + this.config.long2,
+        url: "https://api-maps.yandex.ru/services/route/2.0/?lang=ru_RU&token=" + token + "&rll=" + this.config.long1 + "%2C" + this.config.lat1 + "~" + this.config.long2 + "%2C" + this.config.lat2 + "&rtm=dtr",
         async: true,
         success: function(response) {
             if (typeof response.data !== "object") {
